@@ -1,4 +1,1 @@
-```
-    var a = 12;
-    console.log(a)
-```
+记录自己刷 leetcode
