@@ -10,5 +10,6 @@
 -   [算法](Algorithm/README.md)
     -   [链表](Algorithm/linklist/README.md)
         -   [反转链表](Algorithm/linklist/反转链表.md)
+        -   [移出链表元素](Algorithm/linklist/移出链表元素.md)
 -   [CSS](CSS/README.md)
 -   [网络](Internet/README.md)
