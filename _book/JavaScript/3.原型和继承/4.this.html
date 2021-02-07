@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>3.原型和继承 · GitBook</title>
+        <title>4.this · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="1.原型.html" />
+    <link rel="next" href="../4.this.md" />
     
     
-    <link rel="prev" href="../2.闭包/2.JS的垃圾回收机制.html" />
+    <link rel="prev" href="3.继承.html" />
     
 
     </head>
@@ -206,7 +206,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3" data-path="./">
+        <li class="chapter " data-level="1.2.3" data-path="./">
             
                 <a href="./">
             
@@ -259,7 +259,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.4" data-path="4.this.html">
+        <li class="chapter active" data-level="1.2.3.4" data-path="4.this.html">
             
                 <a href="4.this.html">
             
@@ -428,7 +428,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >3.原型和继承</a>
+        <a href="../.." >4.this</a>
     </h1>
 </div>
 
@@ -443,23 +443,37 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <pre><code class="lang-JS"><span class="hljs-keyword">var</span> length = <span class="hljs-number">10</span>;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.length);
+                                <h1 id="this-&#x7684;&#x4F7F;&#x7528;">this &#x7684;&#x4F7F;&#x7528;</h1>
+<p><strong><font color="ff0000">&#x5728;&#x51FD;&#x6570;&#x4E2D; this &#x5230;&#x5E95;&#x53D6;&#x4F55;&#x503C;&#xFF0C;&#x662F;&#x5728;&#x51FD;&#x6570;&#x771F;&#x6B63;&#x88AB;&#x8C03;&#x7528;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x786E;&#x5B9A;&#x7684;&#xFF0C;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x7684;&#x65F6;&#x5019;&#x786E;&#x5B9A;&#x4E0D;&#x4E86;</font></strong></p>
+<h2 id="&#x60C5;&#x51B5;-1&#xFF1A;&#x6784;&#x9020;&#x51FD;&#x6570;--&#x5982;&#x679C;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x5176;&#x4E2D;&#x7684;-this-&#x5C31;&#x4EE3;&#x8868;&#x5B83;&#x5373;&#x5C06;-new-&#x51FA;&#x6765;&#x7684;&#x5BF9;&#x8C61;">&#x60C5;&#x51B5; 1&#xFF1A;&#x6784;&#x9020;&#x51FD;&#x6570;--&gt;&#x5982;&#x679C;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x5176;&#x4E2D;&#x7684; this &#x5C31;&#x4EE3;&#x8868;&#x5B83;&#x5373;&#x5C06; new &#x51FA;&#x6765;&#x7684;&#x5BF9;&#x8C61;</h2>
+<h2 id="&#x60C5;&#x51B5;-2&#xFF1A;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;">&#x60C5;&#x51B5; 2&#xFF1A;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;</h2>
+<p>&#x5982;&#x679C;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x65F6;&#xFF0C;&#x5E76;&#x4E14;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x51FD;&#x6570;&#x4E2D;&#x7684; this &#x6307;&#x5411;&#x8BE5;&#x5BF9;&#x8C61;&#x3002;</p>
+<pre><code class="lang-JS"><span class="hljs-keyword">var</span> obj = {
+    x:<span class="hljs-number">10</span>;
+    fn:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.x);
+    }
 }
+obj.fn()
+<span class="hljs-comment">// &#x6B64;&#x65F6;fn&#x4E0D;&#x4EC5;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x800C;&#x4E14;&#x7684;&#x786E;&#x662F;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x7ED3;&#x679C;this&#x5C31;&#x662F;obj&#x5BF9;&#x8C61;&#x3002;</span>
 
-<span class="hljs-keyword">var</span> obj = {
-  length: <span class="hljs-number">5</span>,
-  method: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) </span>{
-    fn();
-    <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>]();
-  }
-};
-
-obj.method(fn, <span class="hljs-number">1</span>);<span class="hljs-comment">//&#x8F93;&#x51FA;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</span>
+<span class="hljs-keyword">var</span> fn1 = obj.fn;
+fn1();
+<span class="hljs-comment">//&#x5982;&#x679C;fn&#x51FD;&#x6570;&#x88AB;&#x8D4B;&#x503C;&#x5230;&#x4E86;&#x53E6;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x4E2D;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x4F5C;&#x4E3A;obj&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x6B64;&#x65F6;&#x7684;&#x6267;&#x884C;&#x6808;&#x4E2D;this&#x7684;&#x503C;&#x5C31;&#x662F;window&#xFF0C;this.x&#x4E3A;undefined</span>
 </code></pre>
-<p>&#x7B2C;&#x4E00;&#x4E2A;&#xFF0C;fn()&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F5C;&#x7528;&#x57DF;&#x662F;&#x5728;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x786E;&#x5B9A;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x6B64;&#x65F6; fn &#x5185;&#x90E8; this &#x6307;&#x5411; window&#xFF0C;&#x6253;&#x5370; 10</p>
-<p>&#x7B2C;&#x4E8C;&#x4E2A;&#xFF0C;arguments<a href="">0</a>&#xFF0C;&#x6B64;&#x65F6;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x8C03;&#x7528;&#xFF0C;&#x6240;&#x4EE5; this &#x6307;&#x5411; arguments &#x6253;&#x5370; 2</p>
+<h2 id="&#x60C5;&#x51B5;-3&#xFF1A;&#x51FD;&#x6570;&#x7528;-call-&#x6216;&#x8005;-apply-&#x8C03;&#x7528;&#x5F53;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x88AB;-call-&#x548C;-apply-&#x8C03;&#x7528;&#x65F6;&#xFF0C;this-&#x7684;&#x503C;&#x5C31;&#x53D6;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x503C;">&#x60C5;&#x51B5; 3&#xFF1A;&#x51FD;&#x6570;&#x7528; call &#x6216;&#x8005; apply &#x8C03;&#x7528;:&#x5F53;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x88AB; call &#x548C; apply &#x8C03;&#x7528;&#x65F6;&#xFF0C;this &#x7684;&#x503C;&#x5C31;&#x53D6;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x503C;</h2>
+<pre><code class="lang-JS">    <span class="hljs-keyword">var</span> obj = {
+        x:<span class="hljs-number">10</span>
+    }
+    <span class="hljs-keyword">var</span> fn = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.x);
+    }
+    fn.call(obj)
+    <span class="hljs-comment">//this----obj</span>
+</code></pre>
+<h2 id="&#x60C5;&#x51B5;-4&#xFF1A;&#x5168;&#x5C40;--&#x8C03;&#x7528;&#x666E;&#x901A;&#x51FD;&#x6570;-this-&#x4E5F;&#x90FD;&#x662F;-window">&#x60C5;&#x51B5; 4&#xFF1A;&#x5168;&#x5C40; &amp; &#x8C03;&#x7528;&#x666E;&#x901A;&#x51FD;&#x6570; this &#x4E5F;&#x90FD;&#x662F; window</h2>
 
                                 
                                 </section>
@@ -487,12 +501,12 @@ obj.method(fn, <span class="hljs-number">1</span>);<span class="hljs-comment">//
 
             
                 
-                <a href="../2.闭包/2.JS的垃圾回收机制.html" class="navigation navigation-prev " aria-label="Previous page: 2.JS 的垃圾回收机制">
+                <a href="3.继承.html" class="navigation navigation-prev " aria-label="Previous page: 3.继承">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="1.原型.html" class="navigation navigation-next " aria-label="Next page: 1.原型">
+                <a href="../4.this.md" class="navigation navigation-next " aria-label="Next page: 4.this">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -503,7 +517,7 @@ obj.method(fn, <span class="hljs-number">1</span>);<span class="hljs-comment">//
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.原型和继承","level":"1.2.3","depth":2,"next":{"title":"1.原型","level":"1.2.3.1","depth":3,"path":"JavaScript/3.原型和继承/1.原型.md","ref":"JavaScript/3.原型和继承/1.原型.md","articles":[]},"previous":{"title":"2.JS 的垃圾回收机制","level":"1.2.2.2","depth":3,"path":"JavaScript/2.闭包/2.JS的垃圾回收机制.md","ref":"JavaScript/2.闭包/2.JS的垃圾回收机制.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaScript/3.原型和继承/README.md","mtime":"2021-02-07T07:27:39.447Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2021-02-07T02:23:31.083Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4.this","level":"1.2.3.4","depth":3,"next":{"title":"4.this","level":"1.2.4","depth":2,"path":"JavaScript/4.this.md","ref":"JavaScript/4.this.md","articles":[]},"previous":{"title":"3.继承","level":"1.2.3.3","depth":3,"path":"JavaScript/3.原型和继承/3.继承.md","ref":"JavaScript/3.原型和继承/3.继承.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaScript/3.原型和继承/4.this.md","mtime":"2021-02-07T06:33:01.331Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2021-02-07T02:23:31.083Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

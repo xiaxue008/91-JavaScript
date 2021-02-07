@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>3.原型和继承 · GitBook</title>
+        <title>1.原型 · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="1.原型.html" />
+    <link rel="next" href="2.new.html" />
     
     
-    <link rel="prev" href="../2.闭包/2.JS的垃圾回收机制.html" />
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -206,7 +206,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3" data-path="./">
+        <li class="chapter " data-level="1.2.3" data-path="./">
             
                 <a href="./">
             
@@ -220,7 +220,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1" data-path="1.原型.html">
+        <li class="chapter active" data-level="1.2.3.1" data-path="1.原型.html">
             
                 <a href="1.原型.html">
             
@@ -428,7 +428,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >3.原型和继承</a>
+        <a href="../.." >1.原型</a>
     </h1>
 </div>
 
@@ -443,23 +443,28 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <pre><code class="lang-JS"><span class="hljs-keyword">var</span> length = <span class="hljs-number">10</span>;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.length);
-}
+                                <h1 id="&#x539F;&#x578B;">&#x539F;&#x578B;</h1>
+<p>&#x8FD9;&#x91CC;&#x63A8;&#x8350;&#x770B;<a href="https://www.cnblogs.com/wangfupeng1988/p/3978131.html" _target="blank">&#x738B;&#x798F;&#x670B;</a>&#x5927;&#x4F6C;&#x7684;&#x535A;&#x5BA2;&#x3002;&#x8FD9;&#x91CC;&#x5927;&#x90E8;&#x5206;&#x7684;&#x5185;&#x5BB9;&#x4E5F;&#x90FD;&#x6E90;&#x81EA;&#x4E8E;&#x6B64;&#x3002;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x7684;&#x6BCF;&#x4E2A;&#x51FD;&#x6570;&#x90FD;&#x6709;&#x4E00;&#x4E2A; prototype&#xFF08;&#x539F;&#x578B;&#xFF09;&#x5C5E;&#x6027;&#xFF0C;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x800C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x7528;&#x9014;&#x662F;&#x5305;&#x542B;&#x53EF;&#x4EE5;&#x7531;&#x7279;&#x5B9A;&#x7C7B;&#x578B;&#x7684;&#x6240;&#x6709;&#x5B9E;&#x4F8B;&#x5171;&#x4EAB;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><img src="../../assets/images/JavaScript/&#x539F;&#x578B;&#x548C;&#x7EE7;&#x627F;/prototype.png" alt="avatar"></p>
+<pre><code class="lang-JS">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Fn</span>(<span class="hljs-params"></span>) </span>{ }
+    Fn.prototype.name = <span class="hljs-string">&apos;&#x738B;&#x798F;&#x670B;&apos;</span>;
+    Fn.prototype.getYear = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1988</span>;
+    };
 
-<span class="hljs-keyword">var</span> obj = {
-  length: <span class="hljs-number">5</span>,
-  method: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) </span>{
-    fn();
-    <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>]();
-  }
-};
-
-obj.method(fn, <span class="hljs-number">1</span>);<span class="hljs-comment">//&#x8F93;&#x51FA;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</span>
+    <span class="hljs-keyword">var</span> fn = <span class="hljs-keyword">new</span> Fn();
+    <span class="hljs-built_in">console</span>.log(fn.name);
+    <span class="hljs-built_in">console</span>.log(fn.getYear());
 </code></pre>
-<p>&#x7B2C;&#x4E00;&#x4E2A;&#xFF0C;fn()&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F5C;&#x7528;&#x57DF;&#x662F;&#x5728;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x786E;&#x5B9A;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x6B64;&#x65F6; fn &#x5185;&#x90E8; this &#x6307;&#x5411; window&#xFF0C;&#x6253;&#x5370; 10</p>
-<p>&#x7B2C;&#x4E8C;&#x4E2A;&#xFF0C;arguments<a href="">0</a>&#xFF0C;&#x6B64;&#x65F6;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x8C03;&#x7528;&#xFF0C;&#x6240;&#x4EE5; this &#x6307;&#x5411; arguments &#x6253;&#x5370; 2</p>
+<h5 id="&#x4E3A;&#x4EC0;&#x4E48;-fn-&#x53EF;&#x4EE5;&#x8C03;&#x7528;-fnprototype-&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48; fn &#x53EF;&#x4EE5;&#x8C03;&#x7528; Fn.prototype &#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#xFF1F;</h5>
+<p>&#x56E0;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x51FD;&#x6570; new &#x51FA;&#x6765;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x9690;&#x5F0F;&#x539F;&#x578B;<code>_protp_</code>,&#x8FD9;&#x4E2A;&#x5C5E;&#x6027; === &#x6784;&#x9020;&#x51FD;&#x6570;&#x7684; prototype &#x4E5F;&#x5C31;&#x662F; <code>fn._proto_ === Fn.prototype</code>&lt;/strong&gt;&lt;/font&gt; &#x3002;&#x5176;&#x6B21;&#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x51FD;&#x6570; function &#x548C;&#x5BF9;&#x8C61; obj &#x90FD;&#x662F;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#xFF0C;&#x5B9E;&#x9645;&#x662F;&#x56E0;&#x4E3A;&#x666E;&#x901A;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x7531; Object new &#x51FA;&#x6765;&#x7684;&#xFF0C;&#x666E;&#x901A;&#x7684;&#x51FD;&#x6570;&#x662F;&#x7531; Function new &#x51FA;&#x6765;&#x7684;,&#x6211;&#x4EEC;&#x628A; function &#x548C; obj &#x90FD;&#x5F53;&#x4F5C;&#x5BF9;&#x8C61;&#x770B;&#x4E00;&#x4E0B;&#x3002;</p>
+<p><img src="../../assets/images/JavaScript/&#x539F;&#x578B;&#x548C;&#x7EE7;&#x627F;/proto.png" alt="avatar"></p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x8981;&#x6CE8;&#x610F; Function &#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x7684;&#x65F6;&#x5019;&#xFF0C;Function.<em>proto</em> === Function.prototype
+Object.prototype.<em>proto</em> = null,&#x4E3A;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E0B;&#x56FE;</p>
+<p><img src="../../assets/images/JavaScript/&#x539F;&#x578B;&#x548C;&#x7EE7;&#x627F;/prototypes.png" alt="avatar"></p>
+<h5 id="&#x5230;&#x4E86;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x6765;&#x770B;&#x4E00;&#x4E0B;-instanceof-&#x7684;&#x539F;&#x7406;&#xFF1A;">&#x5230;&#x4E86;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x6765;&#x770B;&#x4E00;&#x4E0B; instanceof &#x7684;&#x539F;&#x7406;&#xFF1A;</h5>
+<font color="ff0000"><strong>instanceof &#x7684;&#x4E00;&#x822C;&#x7528;&#x6CD5; &#x5BF9;&#x8C61; instanceof &#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6CBF;&#x7740;&#x5BF9;&#x8C61;&#x7684; proto &#x8FD9;&#x6761;&#x7EBF;&#x627E;&#x4E0B;&#x53BB;&#xFF0C;&#x6CBF;&#x7740;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684; prototype &#x627E;&#x4E0B;&#x53BB;&#xFF0C;&#x5982;&#x679C;&#x4E24;&#x6761;&#x7EBF;&#x80FD;&#x627E;&#x5230;&#x540C;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#xFF0C;&#x8FD4;&#x56DE; true &#x5426;&#x5219;&#x8FD4;&#x56DE; false</strong></font>
 
                                 
                                 </section>
@@ -487,12 +492,12 @@ obj.method(fn, <span class="hljs-number">1</span>);<span class="hljs-comment">//
 
             
                 
-                <a href="../2.闭包/2.JS的垃圾回收机制.html" class="navigation navigation-prev " aria-label="Previous page: 2.JS 的垃圾回收机制">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 3.原型和继承">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="1.原型.html" class="navigation navigation-next " aria-label="Next page: 1.原型">
+                <a href="2.new.html" class="navigation navigation-next " aria-label="Next page: 2.new">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -503,7 +508,7 @@ obj.method(fn, <span class="hljs-number">1</span>);<span class="hljs-comment">//
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.原型和继承","level":"1.2.3","depth":2,"next":{"title":"1.原型","level":"1.2.3.1","depth":3,"path":"JavaScript/3.原型和继承/1.原型.md","ref":"JavaScript/3.原型和继承/1.原型.md","articles":[]},"previous":{"title":"2.JS 的垃圾回收机制","level":"1.2.2.2","depth":3,"path":"JavaScript/2.闭包/2.JS的垃圾回收机制.md","ref":"JavaScript/2.闭包/2.JS的垃圾回收机制.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaScript/3.原型和继承/README.md","mtime":"2021-02-07T07:27:39.447Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2021-02-07T02:23:31.083Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.原型","level":"1.2.3.1","depth":3,"next":{"title":"2.new","level":"1.2.3.2","depth":3,"path":"JavaScript/3.原型和继承/2.new.md","ref":"JavaScript/3.原型和继承/2.new.md","articles":[]},"previous":{"title":"3.原型和继承","level":"1.2.3","depth":2,"path":"JavaScript/3.原型和继承/README.md","ref":"JavaScript/3.原型和继承/README.md","articles":[{"title":"1.原型","level":"1.2.3.1","depth":3,"path":"JavaScript/3.原型和继承/1.原型.md","ref":"JavaScript/3.原型和继承/1.原型.md","articles":[]},{"title":"2.new","level":"1.2.3.2","depth":3,"path":"JavaScript/3.原型和继承/2.new.md","ref":"JavaScript/3.原型和继承/2.new.md","articles":[]},{"title":"3.继承","level":"1.2.3.3","depth":3,"path":"JavaScript/3.原型和继承/3.继承.md","ref":"JavaScript/3.原型和继承/3.继承.md","articles":[]},{"title":"4.this","level":"1.2.3.4","depth":3,"path":"JavaScript/3.原型和继承/4.this.md","ref":"JavaScript/3.原型和继承/4.this.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaScript/3.原型和继承/1.原型.md","mtime":"2021-02-07T02:24:18.758Z","type":"markdown"},"gitbook":{"version":"3.0.0","time":"2021-02-07T02:23:31.083Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
