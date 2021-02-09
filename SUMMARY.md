@@ -10,7 +10,6 @@
         -   [2.new](JavaScript/3.原型和继承/2.new.md)
         -   [3.继承](JavaScript/3.原型和继承/3.继承.md)
         -   [4.this](JavaScript/3.原型和继承/4.this.md)
-    -   [4.this](JavaScript/4.this.md)
 -   [算法](Algorithm/README.md)
     -   [链表](Algorithm/linklist/README.md)
         -   [环形链表 1](Algorithm/linklist/环形链表1.md)
@@ -18,3 +17,4 @@
         -   [移出链表元素](Algorithm/linklist/移出链表元素.md)
 -   [CSS](CSS/README.md)
 -   [网络](Internet/README.md)
+    -   [Cookie](Internet/fuck cookie/README.md)
