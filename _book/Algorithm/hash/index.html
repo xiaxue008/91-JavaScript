@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            /**
+             * @param {string} s
+             * @param {string} t
+             * @return {boolean}
+             */
+            var isAnagram = function (s, t) {
+                let ss = {};
+                let tt = {};
+
+                for (let i = 0; i < s.length; i++) {
+                    const element = s[i];
+                    if (ss[element] !== undefined) {
+                        ss[element]++;
+                    } else {
+                        ss[element] = 0;
+                    }
+                }
+                for (let j = 0; j < t.length; j++) {
+                    const element = t[j];
+                    if (tt[element] !== undefined) {
+                        tt[element]++;
+                    } else {
+                        tt[element] = 0;
+                    }
+                }
+                let bool = Object.keys(ss).length === Object.keys(tt).length;
+                for (let i = 0; i < Object.keys(ss).length; i++) {
+                    const element = Object.keys(ss)[i];
+                    if (
+                        tt[element] === undefined ||
+                        tt[element] !== ss[element]
+                    ) {
+                        bool = false;
+                        break;
+                    }
+                }
+                return bool;
+            };
+
+            console.log(isAnagram('a', 'ab'));
+        </script>
+    </head>
+    <body></body>
+</html>
