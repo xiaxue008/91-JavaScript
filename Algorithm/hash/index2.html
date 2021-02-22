@@ -7,16 +7,31 @@
         <title>Document</title>
         <script>
             /**
-             * @param {number[]} nums
-             * @return {number[]}
+             * @param {number} n
+             * @return {boolean}
              */
-            var findDisappearedNumbers = function (nums) {
-                let arr = [];
-                nums = nums.sort((a, b) => a - b);
-                for (let i = 0; i < nums.length; i++) {}
-                return arr;
+            var isHappy = function (n) {
+                let set = new Set([]);
+                let res = false;
+                while (!set.has(n)) {
+                    if (n === 1) {
+                        res = true;
+                        break;
+                    } else {
+                        set.add(n);
+                        let arr = (n + '').split('');
+                        let number = 0;
+                        arr.forEach((item) => {
+                            number = number + item * item;
+                        });
+                        n = number;
+                    }
+                }
+                return res;
             };
-            console.log(findDisappearedNumbers([1, 1]));
+
+            let res = isHappy(19);
+            console.log(res);
         </script>
     </head>
     <body></body>

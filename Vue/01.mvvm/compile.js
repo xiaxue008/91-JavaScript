@@ -18,7 +18,7 @@ function compile(node, vm) {
         //这里加入观察者，new对象的时候 触发update，会触发第二次get
         new Watcher(vm, node, name);
     }
-    if (node.nodeType === 1) {
+    if (node.nodeName === 'INPUT') {
         //input节点,这里第一次compile的时候会粗发get，赋初始值
         node.value = vm.data['word'];
         node.addEventListener('input', (e) => {
@@ -26,6 +26,13 @@ function compile(node, vm) {
             vm.data['word'] = e.target.value;
         });
         //这里加入观察者，new对象的时候 触发update，会触发第二次get
+        new Watcher(vm, node, 'word');
+    }
+    if (node.nodeName === 'BUTTON') {
+        let attrVal = node.getAttribute('@click');
+        node.addEventListener('click', (e) => {
+            vm.$options.methods[attrVal].call(vm.data);
+        });
         new Watcher(vm, node, 'word');
     }
 }

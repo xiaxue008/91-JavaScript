@@ -27,10 +27,14 @@ Watcher.prototype = {
     update() {
         //这里执行的时候触发第二次get,加入观察者队列
         this.get();
-        if (this.node.nodetype === 1) {
-            //text
+        if (this.node.nodeName === 'INPUT') {
+            //input
             this.node.value = this.value;
         }
+        // if (this.node.nodeName === 'BUTTON') {
+        //     //button
+        //     this.node.value = this.value;
+        // }
         if (this.node.nodeType === 3) {
             //input
             this.node.nodeValue = this.value;

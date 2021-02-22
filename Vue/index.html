@@ -5,19 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <!-- <script src="./01.mvvm//watcher.js"></script>
+        <script src="./01.mvvm//watcher.js"></script>
         <script src="./01.mvvm/compile.js"></script>
         <script src="./01.mvvm//observer.js"></script>
-        <script src="./01.mvvm/mvvm.js"></script> -->
-        <script src="./02.study/watcher.js"></script>
-        <script src="./02.study/compile.js"></script>
-        <script src="./02.study/observe.js"></script>
-        <script src="./02.study/mvvm.js"></script>
+        <script src="./01.mvvm/mvvm.js"></script>
     </head>
     <body>
         <div id="app">
             <input type="text" v-model="word" id="input" />
             {{word}}
+            <button @click="changeValue">Click</button>
         </div>
 
         <script>
@@ -26,15 +23,17 @@
                 data: {
                     word: 123,
                 },
+                computed: {
+                    newWord() {
+                        return 456;
+                    },
+                },
                 methods: {
                     changeValue() {
-                        console.log(this.form);
-                        this.form = '值被我改变了，气不气？';
+                        this.word = '值被我改变了，气不气？';
                     },
                 },
             });
-
-            // myApp.data.word = 456;
         </script>
     </body>
 </html>
