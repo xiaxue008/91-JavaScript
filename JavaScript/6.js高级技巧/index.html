@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            const whichEvent = (function () {
+                if (window.addEventListener) {
+                    return function (element, type, lisnter, useCapture) {
+                        element.addEventListener(
+                            type,
+                            (e) => {
+                                lisnter.call(element, e);
+                            },
+                            useCapture
+                        );
+                    };
+                } else if (window.attachEvent) {
+                    return function (element, type, handle) {
+                        element.attachEvent('on' + type, (e) => {
+                            handle.call(element, e);
+                        });
+                    };
+                }
+            })();
+        </script>
+    </head>
+    <body></body>
+</html>
